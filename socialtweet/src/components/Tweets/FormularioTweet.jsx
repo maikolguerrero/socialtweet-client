@@ -7,8 +7,17 @@ import { allTweets } from '../graphql/querys';
 
 export default function FormularioTweet() {
 
-    const [usuario, setUsuario] = useState();
-    const [tweet, setTweet] = useState();
+    const [usuario, setUsuario] = useState('');
+    const [tweet, setTweet] = useState('');
+
+    const mensajeError = validacion(usuario, tweet)
+
+    function validacion(usuario, tweet) {
+        if (usuario.trim().length == 0 || tweet.trim().length == 0) return "Espacios Vacios"
+        if (usuario.length > 15 || tweet.length > 280) return "Excede el Límite de Carácteres"
+
+        return
+    }
 
     const [addTweet] = useMutation(CrearTweet, {
         refetchQueries: [{ query: allTweets }]
@@ -29,14 +38,14 @@ export default function FormularioTweet() {
                     setTweet('');
                 }}>
                     <Form.Group className="mb-3" controlId="formHorizontalEmail">
-                        <Form.Control type="text" placeholder="@Usuario" itemID='usuario'
+                        <Form.Control type="text" maxLength={15} placeholder="@Usuario" itemID='usuario'
                             value={usuario}
                             onChange={e => {
                                 setUsuario(e.target.value)
                             }} />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                        <Form.Control as="textarea" rows={3}
+                        <Form.Control as="textarea" maxLength={280} rows={3}
                             placeholder='¿Qué estas pensando?......'
                             itemID='tweet'
                             value={tweet}
@@ -46,7 +55,7 @@ export default function FormularioTweet() {
                         />
                     </Form.Group>
                     <div className="d-flex flex-row-reverse">
-                        <button type="submit" className="btn btn-light">Enviar Tweet</button>
+                        <button type="submit" className="btn btn-light" disabled={mensajeError}>Enviar Tweet</button>
                     </div>
                 </form>
             </section>
