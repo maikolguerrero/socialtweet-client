@@ -11,3 +11,15 @@ query {
   }
 }
 `
+
+export const tweetFavoritos = gql`
+query {
+  likedTweets {
+    content
+    date
+    id
+    like
+    username
+  }
+}
+`
