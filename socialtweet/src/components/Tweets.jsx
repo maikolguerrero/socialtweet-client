@@ -15,6 +15,7 @@ export default function Tweets() {
   const [showAlert, setShowAlert] = useState(false);
   const [messageAlert, setMessageAlert] = useState('');
   const [favoritos, setFavoritos] = useState(false);
+  const [searching, setSearching] = useState(false);
 
   const handleDismiss = () => {
     setShowAlert(false);
@@ -38,7 +39,7 @@ export default function Tweets() {
             }}>{favoritos ? "Ver Todos los Tweets" : "Ver Tweets Favoritos"}</button>
         </Container>
             {/*Barra de navegacion*/}
-            <SearchBar favoritos={favoritos ? TweetsFavoritos.data.likedTweets.map(tweet => tweet.id) : undefined} />
+            <SearchBar favoritos={favoritos ? TweetsFavoritos.data.likedTweets.map(tweet => tweet.id) : undefined} setSearching={setSearching} />
         <Container className="mb-4">
           {loading ? (
             <h2 className="text-center">Cargando todos los tweets...</h2>
@@ -47,7 +48,7 @@ export default function Tweets() {
               {error ? (<h2 className="text-center">Error al conectar con el servidor</h2>)
                 : (
                   <>
-                    {favoritos ? (
+                    {searching ? null : (favoritos ? (
                       <>
                         {tweetFavoritos.loading ? <h2 className="text-center">Cargando los tweets favoritos...</h2> :
                           (<>
@@ -84,7 +85,7 @@ export default function Tweets() {
                             ))}
                           </Row>
                         </>
-                      )}
+                      ))}
                   </>
                 )
               }
