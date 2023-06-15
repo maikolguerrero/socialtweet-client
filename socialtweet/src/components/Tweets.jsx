@@ -5,6 +5,8 @@ import Tweet from "./Tweets/Tweet";
 import { allTweets, tweetFavoritos } from "../graphql/querys";
 import { Container, Row, Col } from 'react-bootstrap';
 import CustomAlert from "./alertas/CustomAlert";
+import SearchBar from '../components/SearchBar.jsx';
+
 
 export default function Tweets() {
 
@@ -13,6 +15,7 @@ export default function Tweets() {
   const [showAlert, setShowAlert] = useState(false);
   const [messageAlert, setMessageAlert] = useState('');
   const [favoritos, setFavoritos] = useState(false);
+  const [searching, setSearching] = useState(false);
 
   const handleDismiss = () => {
     setShowAlert(false);
@@ -35,7 +38,9 @@ export default function Tweets() {
               setFavoritos(!favoritos)
             }}>{favoritos ? "Ver Todos los Tweets" : "Ver Tweets Favoritos"}</button>
         </Container>
-
+            {/*Barra de navegacion*/}
+            {/*Renderizamos el componente SearchBar y le pasamos dos props: favoritos y setSearching.*/}
+            <SearchBar favoritos={favoritos ? TweetsFavoritos.data.likedTweets.map(tweet => tweet.id) : undefined} setSearching={setSearching} />
         <Container className="mb-4">
           {loading ? (
             <h2 className="text-center">Cargando todos los tweets...</h2>
@@ -44,7 +49,7 @@ export default function Tweets() {
               {error ? (<h2 className="text-center">Error al conectar con el servidor</h2>)
                 : (
                   <>
-                    {favoritos ? (
+                    {searching ? null : (favoritos ? (
                       <>
                         {tweetFavoritos.loading ? <h2 className="text-center">Cargando los tweets favoritos...</h2> :
                           (<>
@@ -81,7 +86,7 @@ export default function Tweets() {
                             ))}
                           </Row>
                         </>
-                      )}
+                      ))}
                   </>
                 )
               }
