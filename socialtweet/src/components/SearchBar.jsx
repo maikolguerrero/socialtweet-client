@@ -38,6 +38,12 @@ export default function SearchBar({ favoritos, setSearching }) {
         setSearching(true);
     };
 
+    const handleReset = () => {
+        setSearchTerm('');
+        setSearched(false);
+        setSearching(false);
+    }
+
     const handleKeyDown = (event) => {
         if (event.key === 'Enter') {
             handleSearch();
@@ -58,10 +64,16 @@ export default function SearchBar({ favoritos, setSearching }) {
                 onKeyDown={handleKeyDown}
                 />
                 </Col>
-            <Col xs={4} sm={2}>
+            <Col xs={4} sm={1}>
                 {/* Botón para ejecutar la búsqueda */}
                 <Button variant="primary" className="w-100" onClick={handleSearch}>
                     Buscar
+                </Button>
+            </Col>
+            <Col xs={4} sm={1}>
+                {/* Botón para restablecer la búsqueda */}
+                <Button variant="warning" className="w-100" onClick={handleReset}>
+                    Regresar
                 </Button>
             </Col>
             </Row>
