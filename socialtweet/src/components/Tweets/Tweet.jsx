@@ -18,7 +18,10 @@ export default function Tweet({ tweet, setMessageAlert, setShowAlert }) {
     ]
   })
   const [deleteTweet] = useMutation(EliminarTweet, {
-    refetchQueries: [{ query: allTweets }]
+    refetchQueries: [
+      { query: allTweets },
+      { query: tweetFavoritos }
+    ]
   })
 
   const handleCloseModal = () => {
