@@ -5,6 +5,8 @@ import Tweet from "./Tweets/Tweet";
 import { allTweets, tweetFavoritos } from "../graphql/querys";
 import { Container, Row, Col } from 'react-bootstrap';
 import CustomAlert from "./alertas/CustomAlert";
+import SearchBar from '../components/SearchBar.jsx';
+
 
 export default function Tweets() {
 
@@ -35,7 +37,8 @@ export default function Tweets() {
               setFavoritos(!favoritos)
             }}>{favoritos ? "Ver Todos los Tweets" : "Ver Tweets Favoritos"}</button>
         </Container>
-
+            {/*Barra de navegacion*/}
+            <SearchBar favoritos={favoritos ? TweetsFavoritos.data.likedTweets.map(tweet => tweet.id) : undefined} />
         <Container className="mb-4">
           {loading ? (
             <h2 className="text-center">Cargando todos los tweets...</h2>
