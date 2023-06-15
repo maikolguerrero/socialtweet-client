@@ -4,14 +4,17 @@ import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import { useMutation } from '@apollo/client';
 import { EditarTweet } from '../../graphql/mutations';
-import { allTweets } from '../../graphql/querys';
+import { allTweets, tweetFavoritos } from '../../graphql/querys';
 import { FaEdit } from "react-icons/fa";
 
 function MyVerticallyCenteredModal(props) {
   const [content, setContent] = useState(props.content);
 
   const [editTweet] = useMutation(EditarTweet, {
-    refetchQueries: [{ query: allTweets }]
+    refetchQueries: [
+      { query: allTweets },
+      { query: tweetFavoritos }
+    ]
   })
 
   function validacion(content) {
