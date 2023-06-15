@@ -39,6 +39,7 @@ export default function Tweets() {
             }}>{favoritos ? "Ver Todos los Tweets" : "Ver Tweets Favoritos"}</button>
         </Container>
             {/*Barra de navegacion*/}
+            {/*Renderizamos el componente SearchBar y le pasamos dos props: favoritos y setSearching.*/}
             <SearchBar favoritos={favoritos ? TweetsFavoritos.data.likedTweets.map(tweet => tweet.id) : undefined} setSearching={setSearching} />
         <Container className="mb-4">
           {loading ? (
