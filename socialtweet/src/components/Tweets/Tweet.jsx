@@ -1,7 +1,7 @@
 import { AiOutlineHeart, AiFillHeart, AiFillDelete } from 'react-icons/ai';
 import { useMutation } from '@apollo/client';
 import { AñadirFavorito, EliminarTweet } from "../../graphql/mutations";
-import { allTweets } from "../../graphql/querys";
+import { allTweets, tweetFavoritos } from "../../graphql/querys";
 import { useState } from "react";
 import ModalEdicionTweet from "./ModalEdicionTweet";
 import Button from 'react-bootstrap/Button';
@@ -12,7 +12,10 @@ export default function Tweet({ tweet, setMessageAlert, setShowAlert }) {
   const [showModal, setShowModal] = useState(false);
 
   const [addFavorito] = useMutation(AñadirFavorito, {
-    refetchQueries: [{ query: allTweets }]
+    refetchQueries: [
+      { query: allTweets },
+      { query: tweetFavoritos }
+    ]
   })
   const [deleteTweet] = useMutation(EliminarTweet, {
     refetchQueries: [{ query: allTweets }]
