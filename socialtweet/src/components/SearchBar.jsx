@@ -31,7 +31,7 @@ export default function SearchBar({ favoritos, setSearching }) {
     setSearchTerm('');
     setSearched(false);
     setSearching(false);
-    searchTweets({ variables: { searchTerm: searchTerm } });
+    searchTweets({ variables: { searchTerm: '' } });
   }
 
   const handleKeyDown = (event) => {
