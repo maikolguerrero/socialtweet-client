@@ -23,3 +23,14 @@ query {
   }
 }
 `
+export const SEARCH_TWEETS = gql`
+    query SearchTweets($searchTerm: String!) {
+    searchTweets(searchTerm: $searchTerm) {
+        id
+        username
+        content
+        date
+        like
+    }
+    }
+`;
