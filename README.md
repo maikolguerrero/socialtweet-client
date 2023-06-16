@@ -1,7 +1,7 @@
 # socialtweet-client
 Aplicación CRUD que almacena Tweets de usuarios usando React.js y GraphQL. Cliente frontend para interactuar con servidor GraphQL que administra tweets de usuarios. El servidor backend que se complementa con este cliente se encuentra en este repositorio: [socialtweet-server](https://github.com/maikolguerrero/socialtweet-server)
 
-Demostración
+# Demostración
 Puedes ver una demostración corta de la aplicación en funcionamiento en el siguiente enlace de YouTube:
 
 [https://youtu.be/WWkfJ4Ttomo](https://youtu.be/WWkfJ4Ttomo)
